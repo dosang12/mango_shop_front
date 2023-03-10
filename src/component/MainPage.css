@@ -24,16 +24,16 @@
   justify-content: center;
   align-items: center;
 }
-#footer a {
+#footer > a {
   text-decoration: none;
   padding: 20px;
   color: #333;
 }
 #banner {
   height: 300px;
+  background: yellow;
 }
-
-#banner img {
+#banner > img {
   width: 100%;
 }
 #header-area {
@@ -42,7 +42,7 @@
   display: flex;
   align-items: center;
 }
-#header-area img {
+#header-area > img {
   width: 128px;
 }
 #product-list {
@@ -69,7 +69,7 @@
 .product-name {
   font-size: 14px;
 }
-.product-name {
+.product-price {
   font-size: 16px;
   font-weight: 600;
   margin-top: 4px;
