@@ -1,14 +1,32 @@
-import { Routes, Route } from "react-router-dom";
+import React from "react";
+import "antd/dist/reset.css";
+import "./App.css";
+import { Routes, Route, Link, useNavigate, Navigate } from "react-router-dom";
 import MainPage from "./component/MainPage";
 import ProductsPage from "./component/ProductsPage";
 import UploadPage from "./component/UploadPage";
+import { Button } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 
 function App() {
+  let navigate = useNavigate();
   return (
     <div className="App">
       <div id="header">
         <div id="header-area">
-          <img src="../images/images/icons/logo.png" alt="" />
+          <Link to="/">
+            <img src="../images/images/icons/logo.png" alt="" />
+          </Link>
+          <Button
+            icon={<UploadOutlined />}
+            size="large"
+            onClick={() => {
+              navigate("/UploadPage");
+            }}
+          >
+            상품업로드
+            <UploadOutlined />
+          </Button>
         </div>
       </div>
       <div id="body">

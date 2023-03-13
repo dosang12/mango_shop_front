@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./MainPage.css";
+// import "./MainPage.css";
 import axios from "axios";
 import ProductsPage from "./ProductsPage";
 
