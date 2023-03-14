@@ -11,7 +11,7 @@ const ProductsPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    let url = `https://d61fb4ea-8d46-4be4-b5aa-c8563d8f140b.mock.pstmn.io/products/${id}`;
+    let url = `http://127.0.0.1:8080/products${id}`;
     axios
       .get(url)
       .then((result) => {
