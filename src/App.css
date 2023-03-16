@@ -53,7 +53,7 @@
 }
 .product-card {
   width: 180px;
-  height: 300px;
+  height: 400px;
   margin-right: 12px;
   margin-bottom: 12px;
   border: 1px solid rgba(230, 230, 230, 1);
@@ -77,10 +77,22 @@
   margin-top: 4px;
 }
 .product-seller {
+  font-size: 14px;
+  font-weight: bold;
   display: flex;
   align-items: center;
-  margin-top: 12px;
 }
 .product-avatar {
   width: 24px;
+}
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: start;
+  margin-top: 14px;
+}
+.product-date {
+  font-size: 12px;
+  color: #8a8a8a;
 }

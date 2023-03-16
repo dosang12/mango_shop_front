@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 // import "./MainPage.css";
 import axios from "axios";
 import ProductsPage from "./ProductsPage";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
 const MainPage = () => {
   const [products, setProducts] = useState([]);
@@ -33,9 +36,12 @@ const MainPage = () => {
                   <div className="product-contents">
                     <span className="product-name">{product.name}</span>
                     <span className="product-price">{product.price}</span>
-                    <div className="product-seller">
-                      <img src="./images/images/icons/avatar.png" alt="product-avatar" className="product-avatar" />
-                      <span>{product.seller}</span>
+                    <div className="product-footer">
+                      <div className="product-seller">
+                        <img src="./images/images/icons/avatar.png" alt="product-avatar" className="product-avatar" />
+                        <span>{product.seller}</span>
+                      </div>
+                      <span className="product-date">{dayjs(product.createdAt).format("YYYY/MM/DD")}</span>
                     </div>
                   </div>
                 </Link>

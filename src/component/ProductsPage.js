@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./ProductPage.css";
-
 import "./MainPage.css";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
 const ProductsPage = () => {
   const { id } = useParams();
@@ -11,11 +13,12 @@ const ProductsPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    let url = `http://127.0.0.1:8080/products${id}`;
+    let url = `http://127.0.0.1:8080/products/${id}`;
     axios
       .get(url)
       .then((result) => {
-        setProduct(result.data);
+        console.log(result);
+        setProduct(result.data.product);
       })
       .catch((error) => {
         error.log(error);
@@ -43,7 +46,7 @@ const ProductsPage = () => {
       <div className="content-box">
         <div id="name">{product.name}</div>
         <div id="price">{product.price}</div>
-        <div id="createAt">2023.03.10</div>
+        <div id="createAt">{dayjs(product.createdAt).fromNow()}</div>
         <div id="description">{product.desc}</div>
       </div>
     </div>
