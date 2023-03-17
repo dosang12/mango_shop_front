@@ -4,6 +4,7 @@ import axios from "axios";
 import "./ProductPage.css";
 import "./MainPage.css";
 import dayjs from "dayjs";
+import { API_URL } from "../config/constants";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
@@ -13,7 +14,7 @@ const ProductsPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    let url = `http://127.0.0.1:8080/products/${id}`;
+    let url = `${API_URL}/products/${id}`;
     axios
       .get(url)
       .then((result) => {
