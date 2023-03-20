@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 // import "./MainPage.css";
 import { API_URL } from "../config/constants";
 import axios from "axios";
-import ProductsPage from "./ProductsPage";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
@@ -33,7 +32,7 @@ const MainPage = () => {
                 {/* 맵함수를 사용할때는 key값이 존재해야 한다. 아니면 문법 오류가 남. */}
                 <Link className="product-link" to={`/ProductsPage/${product.id}`}>
                   <div>
-                    <img className="product-img" src={product.imageUrl} alt="product.imageUrl" />
+                    <img className="product-img" src={`${API_URL}/${product.imageUrl}`} alt={product.imageUrl} />
                   </div>
                   <div className="product-contents">
                     <span className="product-name">{product.name}</span>
