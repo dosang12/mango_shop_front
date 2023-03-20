@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Form, Input, Button, Upload, Divider, InputNumber } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Form, Input, Button, Upload, Divider, InputNumber, message } from "antd";
 import { API_URL } from "../config/constants.js";
 
 import "./UploadPage.css";
@@ -7,6 +8,7 @@ import axios from "axios";
 const { TextArea } = Input;
 const UploadPage = () => {
 	const [imageUrl, setImageUrl] = useState(null);
+	const navigate = useNavigate();
 	const onFinish = (val) => {
 		axios
 			.post(`${API_URL}/products`, {
@@ -14,10 +16,10 @@ const UploadPage = () => {
 				description: val.description,
 				price: val.price,
 				seller: val.seller,
-				imageUrl:imageUrl,
+				imageUrl: imageUrl,
 			})
 			.then((result) => {
-				console.log(result);
+				navigate("/", { replace: true });
 			})
 			.catch((error) => {
 				console.error(error);

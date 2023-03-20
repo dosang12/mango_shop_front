@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Form, Input, Button, Upload, Divider, InputNumber } from "antd";
-import { API_URL } from "../config/constants";
+import { useNavigate } from "react-router-dom";
+
+import { Form, message, Input, Button, Upload, Divider, InputNumber } from "antd";
+import { API_URL } from "../config/constants.js";
+
 import "./UploadPage.css";
 import axios from "axios";
-
 const { TextArea } = Input;
 const UploadPage = () => {
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const info = () => {
+    messageApi.info("Hello, Ant Design!");
+  };
+  const navigate = useNavigate();
   const [imageUrl, setImageUrl] = useState(null);
+
   const onFinish = (val) => {
-    console.log(val);
     axios
       .post(`${API_URL}/products`, {
         name: val.name,
@@ -18,12 +26,14 @@ const UploadPage = () => {
         imageUrl: imageUrl,
       })
       .then((result) => {
-        console.log(result);
+        // navigate("/", { replace: true });
       })
       .catch((error) => {
         console.error(error);
+        message("상품업로드에 오류가 발생하였습니다.");
       });
   };
+
   const onChangeImage = (info) => {
     if (info.file.status === "uploading") {
       return;
@@ -32,7 +42,6 @@ const UploadPage = () => {
       const response = info.file.response;
       const imageUrl = response.imageUrl;
       setImageUrl(imageUrl);
-      console.log(imageUrl);
     }
   };
 
@@ -51,24 +60,25 @@ const UploadPage = () => {
             )}
           </Upload>
         </Form.Item>
-        <Divider />
-        <Form.Item label={<div className="upload-label">판매자명</div>} name="seller" rules={[{ required: true, message: "판매자명은 필수 입력 사항입니다." }]}>
-          <Input className="upload-name" size="large" placeholder="이름을 입력해주세요" />
+        <Divider></Divider>
+        <Form.Item label={<span className="upload-label">판매자명</span>} name="seller" rules={[{ required: true, message: "판매자명은 필수 입력 사항입니다." }]}>
+          <Input className="upload-seller" placeholder="판매자명을 입력해주세요" size="large" />
         </Form.Item>
-        <Divider />
-        <Form.Item label={<div className="upload-label">상품명</div>} name="name" rules={[{ required: true, message: "상품명은 필수 입력 사항입니다." }]}>
-          <Input className="upload-name" size="large" placeholder="상품명을 입력해주세요" />
+
+        <Form.Item label={<span className="upload-label">상품명</span>} name="name" rules={[{ required: true, message: "상품명은 필수 입력 사항입니다." }]}>
+          <Input className="upload-name" placeholder="상품명을 입력해주세요" size="large" />
         </Form.Item>
-        <Divider />
-        <Form.Item label={<div className="upload-price">판매가</div>} name="price" rules={[{ required: true, message: "판매가는 필수 입력 사항입니다." }]}>
+        <Divider></Divider>
+        <Form.Item label={<span className="upload-price">판매가</span>} name="price" rules={[{ required: true, message: "판매가는 필수 입력 사항입니다." }]}>
           <InputNumber className="upload-price" size="large" min={0} defaultValue={0} />
         </Form.Item>
-        <Divider />
-        <Form.Item label={<div className="upload-label">상품설명</div>} name="description" rules={[{ required: true, message: "상품설명은 필수 입력 사항입니다." }]}>
-          <TextArea size="large" id="product-description" showCount maxLength={300} placeholder="상품설명을 작성해주세요" />
+        <Divider></Divider>
+        <Form.Item label={<span className="upload-label">상품설명</span>} name="description" rules={[{ required: true, message: "상품설명은 필수 입력 사항입니다." }]}>
+          <TextArea size="large" id="product-description" showCount maxLength={300} placeholder="상품설명을 작성해주세요"></TextArea>
         </Form.Item>
         <Form.Item>
-          <Button id="submit-button" size="large" htmlType="submit">
+          {contextHolder}
+          <Button id="submit-button" htmlType="submit" onClick={info}>
             상품등록하기
           </Button>
         </Form.Item>
@@ -76,5 +86,4 @@ const UploadPage = () => {
     </div>
   );
 };
-
 export default UploadPage;
