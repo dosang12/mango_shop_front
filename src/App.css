@@ -57,11 +57,21 @@ a {
   flex-wrap: wrap;
 }
 .product-card {
+  position: relative;
   width: 180px;
   margin-right: 12px;
   margin-bottom: 12px;
   border: 1px solid rgba(230, 230, 230, 1);
   border-radius: 12px;
+}
+.product-blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffffaa;
+  pointer-events: 0 none;
 }
 .product-img {
   object-fit: contain;
