@@ -72,6 +72,7 @@ a {
   bottom: 0;
   background-color: #ffffffaa;
   pointer-events: 0 none;
+  
 }
 .product-img {
   object-fit: contain;
