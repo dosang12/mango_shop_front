@@ -36,7 +36,7 @@ const ProductPage = () => {
     axios
       .post(`${API_URL}/purchase/${id}`)
       .then((result) => {
-        message.info("결제가 완료 되었습니다");
+        message.info("결재가 완료 되었습니다");
         getProduct();
       })
       .catch((error) => {
@@ -65,7 +65,7 @@ const ProductPage = () => {
         <div id="name">{product.name}</div>
         <div id="price">{product.price}</div>
         <div className="product-date">상품등록일: {dayjs(product.createdAt).format("YY년MM월DD일-hh시MM분ss초")}</div>
-        <Button size="large" type="primary" danger={true} className="payment" onClick={onClickPurchase}>
+        <Button size="large" type="primary" danger={true} className="payment" onClick={onClickPurchase} disabled={product.soldout === 1}>
           즉시결제하기
         </Button>
         <pre id="description">{product.description}</pre>
